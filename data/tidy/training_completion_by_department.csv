@@ -1,0 +1,25 @@
+module_id,module_name,department,users,completed,completion_rate,completion_low,completion_high
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Biomedical Research Institute,700,398.00000,0.56857,0.53161,0.60479
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Clinical Operations,900,435.00000,0.48333,0.45083,0.51598
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),College of Arts & Sciences,1100,675.00000,0.61364,0.58451,0.64197
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),College of Engineering,800,466.00000,0.58250,0.54801,0.61620
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Facilities & Operations,550,279.00000,0.50727,0.46559,0.54886
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Finance & Administration,450,330.00000,0.73333,0.69063,0.77209
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Information Technology Services,350,296.00000,0.84571,0.80414,0.87979
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Library & Academic Services,300,209.00000,0.69667,0.64243,0.74593
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),School of Business,400,261.00000,0.65250,0.60458,0.69751
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),School of Medicine,1400,691.00000,0.49357,0.46744,0.51974
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),School of Nursing,450,268.00000,0.59556,0.54959,0.63991
+TRN-2025-ESSENTIALS,Security Awareness Essentials (annual),Student Affairs,500,319.00000,0.63800,0.59497,0.67892
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Biomedical Research Institute,700,544.00000,0.77714,0.74485,0.80641
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Clinical Operations,900,648.00000,0.72000,0.68978,0.74835
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,College of Arts & Sciences,1100,877.00000,0.79727,0.77250,0.81998
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,College of Engineering,800,636.00000,0.79500,0.76565,0.82153
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Facilities & Operations,550,409.00000,0.74364,0.70554,0.77835
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Finance & Administration,450,406.00000,0.90222,0.87128,0.92635
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Information Technology Services,350,323.00000,0.92286,0.89009,0.94644
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Library & Academic Services,300,257.00000,0.85667,0.81250,0.89182
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,School of Business,400,329.00000,0.82250,0.78204,0.85682
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,School of Medicine,1400,1017.00000,0.72643,0.70248,0.74914
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,School of Nursing,450,374.00000,0.83111,0.79373,0.86289
+TRN-2026-PHISHDEF,Phishing Defense: Recognize & Report,Student Affairs,500,412.00000,0.82400,0.78819,0.85487

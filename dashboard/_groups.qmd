@@ -1,0 +1,135 @@
+# Groups
+
+## Row
+
+{{< include _banner.qmd >}}
+
+## Row
+
+### Column {width=40%}
+
+```{python}
+#| title: "Why the adjustment matters"
+fit_click = aa.fit_adjustment_model(ph, "clicked")
+fit_report = aa.fit_adjustment_model(ph, "reported")
+dept_click, _ = aa.adjusted_group_rates(ph, "department", "clicked", fitted=fit_click)
+dept_report, _ = aa.adjusted_group_rates(ph, "department", "reported", fitted=fit_report)
+role_click, _ = aa.adjusted_group_rates(ph, "role_label", "clicked", fitted=fit_click)
+role_report, _ = aa.adjusted_group_rates(ph, "role_label", "reported", fitted=fit_report)
+ors = aa.odds_ratio_table(fit_click[0], "difficulty")
+or5 = ors.iloc[-1]
+mover = dept_click.loc[dept_click["rank_change"].abs().idxmax()]
+direction = "better" if mover["rank_change"] < 0 else "worse"
+txt = f"""
+<div class="finding">
+<p>Clinical and research units receive <b>role-targeted lures</b> (EHR password resets, grant-portal notices) that are harder than the general templates. Comparing raw click rates would penalise them for being tested harder.</p>
+<p>Every rate on this page is therefore shown twice: <b>raw</b>, and <b>adjusted</b> by a logistic regression that holds template difficulty, role and month constant and asks: <i>what would each group's rate be if it had faced the same mix of templates as everyone else?</i></p>
+<p>A difficulty-5 template has <b>{or5['odds_ratio']:.1f} times the odds</b> of a click compared with a difficulty-1 template (95% CI {or5['or_low']:.1f} to {or5['or_high']:.1f}). The biggest mover is <b>{mover['department']}</b>, which looks {direction} by {abs(int(mover['rank_change']))} places after adjustment.</p>
+<p>Rates cover the six months after the training push (Apr to Sep 2026). Bars show 95% confidence intervals. Groups with fewer than 10 people are never shown.</p>
+</div>
+"""
+display(HTML(txt))
+```
+
+### Column {width=60%}
+
+```{python}
+dc = aa.difficulty_curve(ph)
+r1, r5 = dc.iloc[0]["click_rate"], dc.iloc[-1]["click_rate"]
+fig = go.Figure()
+for col, lo, hi, name, color in (("click_rate", "click_rate_low", "click_rate_high", "Click rate", ap.CLICK),
+                                 ("report_rate", "report_rate_low", "report_rate_high", "Report rate", ap.REPORT)):
+    fig.add_trace(go.Bar(x=dc["difficulty"], y=dc[col], name=name, marker_color=color,
+                         error_y=dict(type="data", symmetric=False, array=dc[hi] - dc[col], arrayminus=dc[col] - dc[lo],
+                                      color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                         hovertemplate="Difficulty %{x}<br>%{y:.1%}<extra>" + name + "</extra>"))
+ap.base_layout(fig, f"Harder templates get more clicks: {pct(r1,0)} at difficulty 1 versus {pct(r5,0)} at difficulty 5",
+               "All 18 campaigns combined; template difficulty on the platform's 1 (obvious) to 5 (highly convincing) scale",
+               xtitle="Template difficulty", ytitle="Share of delivered emails", height=440)
+fig.update_layout(barmode="group", hovermode="x unified", bargap=0.3)
+fig.update_xaxes(tickvals=[1, 2, 3, 4, 5])
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+avg_click = ph[(ph["delivered"] == 1) & ph["month"].isin(aa.POST_MONTHS)]["clicked"].mean()
+top = dept_click.iloc[0]
+lagging = dept_click[dept_click["adjusted_low"] > avg_click]["department"].tolist()
+fig = ap.dumbbell(dept_click, "department",
+                  title=f"{len(lagging)} departments click more than average even after adjusting for template difficulty",
+                  subtitle="Click rate by department, Apr to Sep 2026. Hollow = raw, filled = difficulty-adjusted with 95% CI",
+                  reference=avg_click, reference_label=f"University average {pct(avg_click)}")
+fig.update_layout(height=520)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+avg_report = ph[(ph["delivered"] == 1) & ph["month"].isin(aa.POST_MONTHS)]["reported"].mean()
+best = dept_report.iloc[0]
+fig = ap.dumbbell(dept_report, "department",
+                  title=f"{best['department']} reports most often ({pct(best['adjusted_rate'],0)} adjusted)",
+                  subtitle="Report rate by department, Apr to Sep 2026. Hollow = raw, filled = difficulty-adjusted with 95% CI",
+                  reference=avg_report, reference_label=f"University average {pct(avg_report)}")
+fig.update_traces(marker=dict(color=ap.REPORT), selector=dict(name="Adjusted rate (same template mix for every group)"))
+fig.update_xaxes(title_text="Report rate")
+fig.update_layout(height=520)
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+rc_ = role_click.sort_values("adjusted_rate", ascending=False)
+hi_, lo_ = rc_.iloc[0], rc_.iloc[-1]
+fig = go.Figure()
+fig.add_trace(go.Bar(x=rc_["role_label"], y=rc_["adjusted_rate"], name="Adjusted click rate", marker_color=ap.CLICK,
+                     error_y=dict(type="data", symmetric=False, array=rc_["adjusted_high"] - rc_["adjusted_rate"],
+                                  arrayminus=rc_["adjusted_rate"] - rc_["adjusted_low"], color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                     hovertemplate="%{x}<br>adjusted %{y:.1%}<extra></extra>"))
+rr_ = role_report.set_index("role_label").loc[rc_["role_label"]].reset_index()
+fig.add_trace(go.Bar(x=rr_["role_label"], y=rr_["adjusted_rate"], name="Adjusted report rate", marker_color=ap.REPORT,
+                     error_y=dict(type="data", symmetric=False, array=rr_["adjusted_high"] - rr_["adjusted_rate"],
+                                  arrayminus=rr_["adjusted_rate"] - rr_["adjusted_low"], color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                     hovertemplate="%{x}<br>adjusted %{y:.1%}<extra></extra>"))
+ap.base_layout(fig, f"{hi_['role_label']}s click most ({pct(hi_['adjusted_rate'])}); {lo_['role_label'].lower()} click least ({pct(lo_['adjusted_rate'])})",
+               "By role, Apr to Sep 2026, adjusted for template difficulty, department and month, 95% CI",
+               ytitle="Share of delivered emails", height=460)
+fig.update_layout(barmode="group", hovermode="x unified", bargap=0.3)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+cell = aa.group_rates(ph, ["department", "role_label"], months=aa.POST_MONTHS)
+piv = cell.pivot(index="department", columns="role_label", values="report_rate")
+sup = cell.pivot(index="department", columns="role_label", values="suppressed").astype(bool)
+order = dept_report["department"].tolist()
+piv, sup = piv.loc[order], sup.loc[order]
+n_supp = int(cell["suppressed"].sum())
+fig = ap.heatmap(piv, f"Report rate by department and role ({n_supp} cells hidden because fewer than 10 people)",
+                 "Raw report rate, Apr to Sep 2026. Darker = more reporting. A dash means no one holds that role in that unit.",
+                 suppressed=sup)
+fig.update_layout(height=560)
+show(fig)
+```
+
+## Row
+
+```{python}
+#| title: "Department detail (Apr to Sep 2026): raw versus difficulty-adjusted click rate"
+tbl = dept_click[["department", "users", "mean_difficulty", "raw_rate", "raw_low", "raw_high",
+                  "adjusted_rate", "adjusted_low", "adjusted_high", "rank_change"]].copy()
+tbl.columns = ["Department", "People", "Mean difficulty faced", "Raw click rate", "Raw CI low", "Raw CI high",
+               "Adjusted click rate", "Adj. CI low", "Adj. CI high", "Rank change after adjustment"]
+display(table_html(tbl, {"Mean difficulty faced": "{:.2f}", "Raw click rate": "{:.1%}", "Raw CI low": "{:.1%}", "Raw CI high": "{:.1%}",
+                         "Adjusted click rate": "{:.1%}", "Adj. CI low": "{:.1%}", "Adj. CI high": "{:.1%}", "Rank change after adjustment": "{:+.0f}"}))
+```

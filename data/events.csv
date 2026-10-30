@@ -1,0 +1,7 @@
+event_id,event_name,event_date,format,audience
+EVT-01,Cybersecurity Awareness Month kickoff & Phish Bowl,2025-10-01,in-person,all
+EVT-02,Lunch & Learn: Spot the Phish (live demo),2025-10-07,virtual,all
+EVT-03,Password manager & MFA clinic,2025-10-14,in-person,all
+EVT-04,Protecting research data: faculty panel,2025-10-16,virtual,research
+EVT-05,Clinical phishing tabletop exercise,2025-10-22,in-person,clinical
+EVT-06,Report-a-Phish challenge awards,2025-10-29,virtual,all

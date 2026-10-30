@@ -1,0 +1,13 @@
+# rendered site (built by GitHub Actions and published to Pages)
+dashboard/_site/
+dashboard/.quarto/
+dashboard/index_files/
+dashboard/*.html
+# python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+# local test artefacts
+tests/*.log
+tests/screenshots/
+tests/smoke_output.txt

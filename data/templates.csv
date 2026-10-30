@@ -1,0 +1,37 @@
+template_id,template_name,template_difficulty,audience
+T001,Package delivery notice,1,general
+T002,Survey: employee engagement,1,general
+T003,Campus emergency alert update,1,general
+T004,Shared document from a colleague,2,general
+T005,Password expiration warning,2,general
+T006,Parking citation appeal,2,general
+T007,Zoom meeting recording available,2,general
+T008,Conference registration refund,2,general
+T009,Software license renewal,2,general
+T010,HR benefits open enrollment,3,general
+T011,IT help desk ticket update,3,general
+T012,Microsoft 365 storage almost full,3,general
+T013,Gift card request from 'the Dean',3,general
+T014,Calendar invite: performance review,3,general
+T015,Voicemail transcription attached,3,general
+T016,Payroll direct-deposit change,4,general
+T017,Invoice approval needed,4,general
+T018,DocuSign: signature requested,4,general
+T019,Reply-chain from a real vendor thread,5,general
+T020,MFA fatigue: 'approve this sign-in',5,general
+T021,Conference abstract accepted,2,research
+T022,Lab equipment recall notice,3,research
+T023,Journal reviewer invitation,3,research
+T024,Core facility invoice,4,research
+T025,Research computing quota exceeded,3,research
+T026,NIH eRA Commons re-verification,5,research
+T027,IRB protocol expiration notice,4,research
+T028,Collaborator shared dataset (OneDrive),4,research
+T029,Pharmacy formulary update,2,clinical
+T030,Patient portal message pending,4,clinical
+T031,On-call schedule change,3,clinical
+T032,Telehealth platform update,3,clinical
+T033,CME credits expiring,4,clinical
+T034,EHR (Epic) password reset,5,clinical
+T035,Credentialing document request,4,clinical
+T036,HIPAA compliance attestation due,5,clinical

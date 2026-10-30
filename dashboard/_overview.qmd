@@ -1,0 +1,81 @@
+# Overview
+
+## Row
+
+{{< include _banner.qmd >}}
+
+## Row
+
+```{python}
+#| title: "Where the program stands: current quarter versus the quarter before"
+display(HTML(ap.kpi_tiles_html(kpis)))
+```
+
+## Row
+
+### Column {width=62%}
+
+```{python}
+title = (f"{aa.describe_change(report_post3, report_pre3, True, 'Report rate')} and "
+         f"{aa.describe_change(click_post3, click_pre3, False, 'click rate').lower()} since the March training push")
+fig = go.Figure()
+ap.add_ci_line(fig, monthly["month_start"], monthly["click_rate"], monthly["click_rate_low"], monthly["click_rate_high"],
+               "Click rate", ap.CLICK)
+ap.add_ci_line(fig, monthly["month_start"], monthly["report_rate"], monthly["report_rate_low"], monthly["report_rate_high"],
+               "Report rate", ap.REPORT)
+ap.add_event_markers(fig, events[events["event_type"].isin(["training_launch", "awareness_month"])])
+ap.base_layout(fig, title, "Share of delivered simulation emails, by month, with 95% confidence bands",
+               ytitle="Share of delivered emails", height=480, wrap=80)
+show(fig)
+```
+
+### Column {width=38%}
+
+```{python}
+#| title: "What to look at"
+ba = aa.before_after(ph)
+c, r = ba.iloc[0], ba.iloc[1]
+rc = aa.repeat_clickers(ph)
+n_first, n_last = int(rc.iloc[0]["repeat_clickers"]), int(rc.iloc[-1]["repeat_clickers"])
+k_click, k_report, k_ttr, k_train = kpis
+txt = f"""
+<ul class="finding">
+<li><b>People are reporting more and clicking less.</b> In {k_report.current_period} {pct(k_report.current)} of delivered simulations were reported and {pct(k_click.current)} were clicked. Before the training push (Sep 2025 to Feb 2026) the figures were {pct(r['pre_rate'])} reported and {pct(c['pre_rate'])} clicked.</li>
+<li><b>Reports arrive faster.</b> Median time to the first report is {k_ttr.current:.0f} minutes, down from {k_ttr.prior:.0f} minutes last quarter.</li>
+<li><b>Repeat clickers are shrinking.</b> {n_last} people clicked 3 or more of the last 6 simulations, down from {n_first} when tracking began.</li>
+<li><b>Some units still lag.</b> After adjusting for template difficulty, the Groups page shows three departments with click rates well above the university average.</li>
+<li><b>Training completion is {pct(k_train.current, 0)}</b> for the Phishing Defense module and completers click about half as often as non-completers (Effectiveness page).</li>
+</ul>
+"""
+display(HTML(txt))
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+monthly["reports_per_click"] = monthly["reports"] / monthly["clicks"]
+first3, last3 = monthly["reports_per_click"].head(3).mean(), monthly["reports_per_click"].tail(3).mean()
+fig = go.Figure(go.Bar(x=monthly["month_start"], y=monthly["reports_per_click"], marker_color=ap.REPORT,
+                       hovertemplate="%{x|%b %Y}<br>%{y:.1f} reports per click<extra></extra>"))
+ap.base_layout(fig, f"Reports per click rose from {first3:.1f} to {last3:.1f}",
+               "The resilience ratio: how many people reported a simulation for every one who clicked",
+               ytitle="Reports per click", y_pct=False, legend=False, height=380)
+fig.update_layout(hovermode="closest", bargap=0.35)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+fig = go.Figure()
+ap.add_ci_line(fig, monthly["month_start"], monthly["median_minutes_to_report"], monthly["median_low"],
+               monthly["median_high"], "Median minutes to first report", ap.THIRD, hover_fmt=".0f")
+ap.add_event_markers(fig, events[events["event_type"].isin(["training_launch", "awareness_month"])])
+m0, m1 = monthly["median_minutes_to_report"].iloc[0], monthly["median_minutes_to_report"].iloc[-1]
+ap.base_layout(fig, f"Reports now arrive in about {m1:.0f} minutes, versus {m0:.0f} at the start",
+               "Median minutes from delivery to the first report, with 95% confidence bands",
+               ytitle="Minutes", y_pct=False, legend=False, height=380)
+show(fig)
+```

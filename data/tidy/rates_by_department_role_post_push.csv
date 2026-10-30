@@ -1,0 +1,193 @@
+department,role_label,metric,users,n,k,rate,ci_low,ci_high,period
+Biomedical Research Institute,Faculty,click_rate,132,776.00000,94.00000,0.12113,0.10002,0.14598,2026-04 to 2026-09
+Biomedical Research Institute,Researcher,click_rate,292,1734.00000,183.00000,0.10554,0.09194,0.12088,2026-04 to 2026-09
+Biomedical Research Institute,Staff,click_rate,178,1057.00000,81.00000,0.07663,0.06208,0.09425,2026-04 to 2026-09
+Biomedical Research Institute,Student worker,click_rate,98,581.00000,81.00000,0.13941,0.11361,0.16996,2026-04 to 2026-09
+Clinical Operations,Faculty,click_rate,230,1366.00000,167.00000,0.12225,0.10593,0.14069,2026-04 to 2026-09
+Clinical Operations,Researcher,click_rate,88,524.00000,89.00000,0.16985,0.14013,0.20437,2026-04 to 2026-09
+Clinical Operations,Staff,click_rate,498,2937.00000,304.00000,0.10351,0.09300,0.11505,2026-04 to 2026-09
+Clinical Operations,Student worker,click_rate,84,497.00000,64.00000,0.12877,0.10215,0.16109,2026-04 to 2026-09
+College of Arts & Sciences,Faculty,click_rate,391,2315.00000,186.00000,0.08035,0.06996,0.09213,2026-04 to 2026-09
+College of Arts & Sciences,Researcher,click_rate,112,662.00000,48.00000,0.07251,0.05512,0.09483,2026-04 to 2026-09
+College of Arts & Sciences,Staff,click_rate,319,1886.00000,115.00000,0.06098,0.05104,0.07269,2026-04 to 2026-09
+College of Arts & Sciences,Student worker,click_rate,278,1639.00000,166.00000,0.10128,0.08759,0.11683,2026-04 to 2026-09
+College of Engineering,Faculty,click_rate,161,956.00000,81.00000,0.08473,0.06869,0.10409,2026-04 to 2026-09
+College of Engineering,Researcher,click_rate,342,2017.00000,217.00000,0.10759,0.09480,0.12186,2026-04 to 2026-09
+College of Engineering,Staff,click_rate,172,1018.00000,58.00000,0.05697,0.04433,0.07295,2026-04 to 2026-09
+College of Engineering,Student worker,click_rate,125,737.00000,92.00000,0.12483,0.10290,0.15066,2026-04 to 2026-09
+Facilities & Operations,Faculty,click_rate,8,,,,,,2026-04 to 2026-09
+Facilities & Operations,Researcher,click_rate,6,,,,,,2026-04 to 2026-09
+Facilities & Operations,Staff,click_rate,391,2311.00000,201.00000,0.08698,0.07616,0.09916,2026-04 to 2026-09
+Facilities & Operations,Student worker,click_rate,145,856.00000,115.00000,0.13435,0.11313,0.15883,2026-04 to 2026-09
+Finance & Administration,Faculty,click_rate,4,,,,,,2026-04 to 2026-09
+Finance & Administration,Researcher,click_rate,3,,,,,,2026-04 to 2026-09
+Finance & Administration,Staff,click_rate,329,1945.00000,84.00000,0.04319,0.03502,0.05316,2026-04 to 2026-09
+Finance & Administration,Student worker,click_rate,114,675.00000,55.00000,0.08148,0.06313,0.10457,2026-04 to 2026-09
+Information Technology Services,Faculty,click_rate,4,,,,,,2026-04 to 2026-09
+Information Technology Services,Researcher,click_rate,1,,,,,,2026-04 to 2026-09
+Information Technology Services,Staff,click_rate,252,1492.00000,27.00000,0.01810,0.01247,0.02620,2026-04 to 2026-09
+Information Technology Services,Student worker,click_rate,93,551.00000,17.00000,0.03085,0.01935,0.04885,2026-04 to 2026-09
+Library & Academic Services,Faculty,click_rate,92,546.00000,53.00000,0.09707,0.07498,0.12479,2026-04 to 2026-09
+Library & Academic Services,Researcher,click_rate,25,149.00000,11.00000,0.07383,0.04172,0.12735,2026-04 to 2026-09
+Library & Academic Services,Staff,click_rate,103,610.00000,31.00000,0.05082,0.03603,0.07123,2026-04 to 2026-09
+Library & Academic Services,Student worker,click_rate,80,473.00000,42.00000,0.08879,0.06636,0.11785,2026-04 to 2026-09
+School of Business,Faculty,click_rate,119,704.00000,44.00000,0.06250,0.04688,0.08286,2026-04 to 2026-09
+School of Business,Researcher,click_rate,55,322.00000,24.00000,0.07453,0.05060,0.10850,2026-04 to 2026-09
+School of Business,Staff,click_rate,127,750.00000,44.00000,0.05867,0.04399,0.07784,2026-04 to 2026-09
+School of Business,Student worker,click_rate,99,586.00000,48.00000,0.08191,0.06234,0.10693,2026-04 to 2026-09
+School of Medicine,Faculty,click_rate,361,2133.00000,198.00000,0.09283,0.08123,0.10588,2026-04 to 2026-09
+School of Medicine,Researcher,click_rate,144,853.00000,80.00000,0.09379,0.07600,0.11521,2026-04 to 2026-09
+School of Medicine,Staff,click_rate,751,4434.00000,354.00000,0.07984,0.07222,0.08818,2026-04 to 2026-09
+School of Medicine,Student worker,click_rate,144,848.00000,84.00000,0.09906,0.08072,0.12101,2026-04 to 2026-09
+School of Nursing,Faculty,click_rate,114,673.00000,56.00000,0.08321,0.06463,0.10652,2026-04 to 2026-09
+School of Nursing,Researcher,click_rate,41,243.00000,26.00000,0.10700,0.07407,0.15216,2026-04 to 2026-09
+School of Nursing,Staff,click_rate,244,1437.00000,112.00000,0.07794,0.06518,0.09295,2026-04 to 2026-09
+School of Nursing,Student worker,click_rate,51,303.00000,40.00000,0.13201,0.09847,0.17477,2026-04 to 2026-09
+Student Affairs,Faculty,click_rate,9,,,,,,2026-04 to 2026-09
+Student Affairs,Researcher,click_rate,2,,,,,,2026-04 to 2026-09
+Student Affairs,Staff,click_rate,381,2258.00000,183.00000,0.08105,0.07049,0.09303,2026-04 to 2026-09
+Student Affairs,Student worker,click_rate,108,640.00000,82.00000,0.12812,0.10443,0.15626,2026-04 to 2026-09
+Biomedical Research Institute,Faculty,report_rate,132,776.00000,193.00000,0.24871,0.21959,0.28031,2026-04 to 2026-09
+Biomedical Research Institute,Researcher,report_rate,292,1734.00000,582.00000,0.33564,0.31380,0.35821,2026-04 to 2026-09
+Biomedical Research Institute,Staff,report_rate,178,1057.00000,410.00000,0.38789,0.35897,0.41762,2026-04 to 2026-09
+Biomedical Research Institute,Student worker,report_rate,98,581.00000,191.00000,0.32874,0.29178,0.36796,2026-04 to 2026-09
+Clinical Operations,Faculty,report_rate,230,1366.00000,290.00000,0.21230,0.19144,0.23478,2026-04 to 2026-09
+Clinical Operations,Researcher,report_rate,88,524.00000,119.00000,0.22710,0.19329,0.26488,2026-04 to 2026-09
+Clinical Operations,Staff,report_rate,498,2937.00000,935.00000,0.31835,0.30175,0.33543,2026-04 to 2026-09
+Clinical Operations,Student worker,report_rate,84,497.00000,132.00000,0.26559,0.22867,0.30611,2026-04 to 2026-09
+College of Arts & Sciences,Faculty,report_rate,391,2315.00000,724.00000,0.31274,0.29418,0.33193,2026-04 to 2026-09
+College of Arts & Sciences,Researcher,report_rate,112,662.00000,232.00000,0.35045,0.31507,0.38757,2026-04 to 2026-09
+College of Arts & Sciences,Staff,report_rate,319,1886.00000,797.00000,0.42259,0.40047,0.44502,2026-04 to 2026-09
+College of Arts & Sciences,Student worker,report_rate,278,1639.00000,502.00000,0.30628,0.28444,0.32903,2026-04 to 2026-09
+College of Engineering,Faculty,report_rate,161,956.00000,264.00000,0.27615,0.24875,0.30534,2026-04 to 2026-09
+College of Engineering,Researcher,report_rate,342,2017.00000,749.00000,0.37134,0.35052,0.39266,2026-04 to 2026-09
+College of Engineering,Staff,report_rate,172,1018.00000,388.00000,0.38114,0.35181,0.41137,2026-04 to 2026-09
+College of Engineering,Student worker,report_rate,125,737.00000,222.00000,0.30122,0.26920,0.33530,2026-04 to 2026-09
+Facilities & Operations,Faculty,report_rate,8,,,,,,2026-04 to 2026-09
+Facilities & Operations,Researcher,report_rate,6,,,,,,2026-04 to 2026-09
+Facilities & Operations,Staff,report_rate,391,2311.00000,739.00000,0.31977,0.30107,0.33908,2026-04 to 2026-09
+Facilities & Operations,Student worker,report_rate,145,856.00000,227.00000,0.26519,0.23671,0.29576,2026-04 to 2026-09
+Finance & Administration,Faculty,report_rate,4,,,,,,2026-04 to 2026-09
+Finance & Administration,Researcher,report_rate,3,,,,,,2026-04 to 2026-09
+Finance & Administration,Staff,report_rate,329,1945.00000,960.00000,0.49357,0.47139,0.51578,2026-04 to 2026-09
+Finance & Administration,Student worker,report_rate,114,675.00000,283.00000,0.41926,0.38259,0.45684,2026-04 to 2026-09
+Information Technology Services,Faculty,report_rate,4,,,,,,2026-04 to 2026-09
+Information Technology Services,Researcher,report_rate,1,,,,,,2026-04 to 2026-09
+Information Technology Services,Staff,report_rate,252,1492.00000,981.00000,0.65751,0.63305,0.68115,2026-04 to 2026-09
+Information Technology Services,Student worker,report_rate,93,551.00000,282.00000,0.51180,0.47012,0.55331,2026-04 to 2026-09
+Library & Academic Services,Faculty,report_rate,92,546.00000,174.00000,0.31868,0.28098,0.35892,2026-04 to 2026-09
+Library & Academic Services,Researcher,report_rate,25,149.00000,58.00000,0.38926,0.31470,0.46939,2026-04 to 2026-09
+Library & Academic Services,Staff,report_rate,103,610.00000,283.00000,0.46393,0.42471,0.50361,2026-04 to 2026-09
+Library & Academic Services,Student worker,report_rate,80,473.00000,183.00000,0.38689,0.34408,0.43153,2026-04 to 2026-09
+School of Business,Faculty,report_rate,119,704.00000,205.00000,0.29119,0.25884,0.32581,2026-04 to 2026-09
+School of Business,Researcher,report_rate,55,322.00000,122.00000,0.37888,0.32762,0.43300,2026-04 to 2026-09
+School of Business,Staff,report_rate,127,750.00000,305.00000,0.40667,0.37207,0.44221,2026-04 to 2026-09
+School of Business,Student worker,report_rate,99,586.00000,195.00000,0.33276,0.29581,0.37190,2026-04 to 2026-09
+School of Medicine,Faculty,report_rate,361,2133.00000,555.00000,0.26020,0.24202,0.27924,2026-04 to 2026-09
+School of Medicine,Researcher,report_rate,144,853.00000,251.00000,0.29426,0.26465,0.32570,2026-04 to 2026-09
+School of Medicine,Staff,report_rate,751,4434.00000,1503.00000,0.33897,0.32518,0.35304,2026-04 to 2026-09
+School of Medicine,Student worker,report_rate,144,848.00000,252.00000,0.29717,0.26738,0.32879,2026-04 to 2026-09
+School of Nursing,Faculty,report_rate,114,673.00000,224.00000,0.33284,0.29827,0.36930,2026-04 to 2026-09
+School of Nursing,Researcher,report_rate,41,243.00000,88.00000,0.36214,0.30429,0.42428,2026-04 to 2026-09
+School of Nursing,Staff,report_rate,244,1437.00000,584.00000,0.40640,0.38129,0.43201,2026-04 to 2026-09
+School of Nursing,Student worker,report_rate,51,303.00000,94.00000,0.31023,0.26079,0.36442,2026-04 to 2026-09
+Student Affairs,Faculty,report_rate,9,,,,,,2026-04 to 2026-09
+Student Affairs,Researcher,report_rate,2,,,,,,2026-04 to 2026-09
+Student Affairs,Staff,report_rate,381,2258.00000,818.00000,0.36227,0.34269,0.38231,2026-04 to 2026-09
+Student Affairs,Student worker,report_rate,108,640.00000,169.00000,0.26406,0.23139,0.29955,2026-04 to 2026-09
+Biomedical Research Institute,Faculty,open_rate,132,776.00000,455.00000,0.58634,0.55135,0.62048,2026-04 to 2026-09
+Biomedical Research Institute,Researcher,open_rate,292,1734.00000,1017.00000,0.58651,0.56316,0.60947,2026-04 to 2026-09
+Biomedical Research Institute,Staff,open_rate,178,1057.00000,590.00000,0.55818,0.52809,0.58786,2026-04 to 2026-09
+Biomedical Research Institute,Student worker,open_rate,98,581.00000,337.00000,0.58003,0.53951,0.61951,2026-04 to 2026-09
+Clinical Operations,Faculty,open_rate,230,1366.00000,764.00000,0.55930,0.53284,0.58542,2026-04 to 2026-09
+Clinical Operations,Researcher,open_rate,88,524.00000,297.00000,0.56679,0.52403,0.60858,2026-04 to 2026-09
+Clinical Operations,Staff,open_rate,498,2937.00000,1633.00000,0.55601,0.53798,0.57389,2026-04 to 2026-09
+Clinical Operations,Student worker,open_rate,84,497.00000,270.00000,0.54326,0.49930,0.58655,2026-04 to 2026-09
+College of Arts & Sciences,Faculty,open_rate,391,2315.00000,1162.00000,0.50194,0.48159,0.52229,2026-04 to 2026-09
+College of Arts & Sciences,Researcher,open_rate,112,662.00000,328.00000,0.49547,0.45752,0.53347,2026-04 to 2026-09
+College of Arts & Sciences,Staff,open_rate,319,1886.00000,976.00000,0.51750,0.49493,0.53999,2026-04 to 2026-09
+College of Arts & Sciences,Student worker,open_rate,278,1639.00000,845.00000,0.51556,0.49136,0.53969,2026-04 to 2026-09
+College of Engineering,Faculty,open_rate,161,956.00000,548.00000,0.57322,0.54164,0.60422,2026-04 to 2026-09
+College of Engineering,Researcher,open_rate,342,2017.00000,1190.00000,0.58999,0.56837,0.61126,2026-04 to 2026-09
+College of Engineering,Staff,open_rate,172,1018.00000,580.00000,0.56974,0.53912,0.59984,2026-04 to 2026-09
+College of Engineering,Student worker,open_rate,125,737.00000,431.00000,0.58480,0.54888,0.61985,2026-04 to 2026-09
+Facilities & Operations,Faculty,open_rate,8,,,,,,2026-04 to 2026-09
+Facilities & Operations,Researcher,open_rate,6,,,,,,2026-04 to 2026-09
+Facilities & Operations,Staff,open_rate,391,2311.00000,1171.00000,0.50671,0.48633,0.52706,2026-04 to 2026-09
+Facilities & Operations,Student worker,open_rate,145,856.00000,461.00000,0.53855,0.50506,0.57170,2026-04 to 2026-09
+Finance & Administration,Faculty,open_rate,4,,,,,,2026-04 to 2026-09
+Finance & Administration,Researcher,open_rate,3,,,,,,2026-04 to 2026-09
+Finance & Administration,Staff,open_rate,329,1945.00000,918.00000,0.47198,0.44987,0.49420,2026-04 to 2026-09
+Finance & Administration,Student worker,open_rate,114,675.00000,332.00000,0.49185,0.45429,0.52951,2026-04 to 2026-09
+Information Technology Services,Faculty,open_rate,4,,,,,,2026-04 to 2026-09
+Information Technology Services,Researcher,open_rate,1,,,,,,2026-04 to 2026-09
+Information Technology Services,Staff,open_rate,252,1492.00000,700.00000,0.46917,0.44396,0.49454,2026-04 to 2026-09
+Information Technology Services,Student worker,open_rate,93,551.00000,271.00000,0.49183,0.45029,0.53349,2026-04 to 2026-09
+Library & Academic Services,Faculty,open_rate,92,546.00000,289.00000,0.52930,0.48738,0.57082,2026-04 to 2026-09
+Library & Academic Services,Researcher,open_rate,25,149.00000,63.00000,0.42282,0.34642,0.50310,2026-04 to 2026-09
+Library & Academic Services,Staff,open_rate,103,610.00000,307.00000,0.50328,0.46371,0.54281,2026-04 to 2026-09
+Library & Academic Services,Student worker,open_rate,80,473.00000,234.00000,0.49471,0.44988,0.53963,2026-04 to 2026-09
+School of Business,Faculty,open_rate,119,704.00000,369.00000,0.52415,0.48723,0.56081,2026-04 to 2026-09
+School of Business,Researcher,open_rate,55,322.00000,161.00000,0.50000,0.44571,0.55429,2026-04 to 2026-09
+School of Business,Staff,open_rate,127,750.00000,370.00000,0.49333,0.45768,0.52906,2026-04 to 2026-09
+School of Business,Student worker,open_rate,99,586.00000,306.00000,0.52218,0.48173,0.56235,2026-04 to 2026-09
+School of Medicine,Faculty,open_rate,361,2133.00000,1171.00000,0.54899,0.52781,0.57000,2026-04 to 2026-09
+School of Medicine,Researcher,open_rate,144,853.00000,468.00000,0.54865,0.51511,0.58175,2026-04 to 2026-09
+School of Medicine,Staff,open_rate,751,4434.00000,2382.00000,0.53721,0.52251,0.55185,2026-04 to 2026-09
+School of Medicine,Student worker,open_rate,144,848.00000,458.00000,0.54009,0.50644,0.57338,2026-04 to 2026-09
+School of Nursing,Faculty,open_rate,114,673.00000,370.00000,0.54978,0.51201,0.58698,2026-04 to 2026-09
+School of Nursing,Researcher,open_rate,41,243.00000,128.00000,0.52675,0.46405,0.58862,2026-04 to 2026-09
+School of Nursing,Staff,open_rate,244,1437.00000,804.00000,0.55950,0.53371,0.58497,2026-04 to 2026-09
+School of Nursing,Student worker,open_rate,51,303.00000,168.00000,0.55446,0.49816,0.60939,2026-04 to 2026-09
+Student Affairs,Faculty,open_rate,9,,,,,,2026-04 to 2026-09
+Student Affairs,Researcher,open_rate,2,,,,,,2026-04 to 2026-09
+Student Affairs,Staff,open_rate,381,2258.00000,1150.00000,0.50930,0.48868,0.52989,2026-04 to 2026-09
+Student Affairs,Student worker,open_rate,108,640.00000,349.00000,0.54531,0.50658,0.58351,2026-04 to 2026-09
+Biomedical Research Institute,Faculty,data_entry_rate,132,776.00000,45.00000,0.05799,0.04362,0.07671,2026-04 to 2026-09
+Biomedical Research Institute,Researcher,data_entry_rate,292,1734.00000,92.00000,0.05306,0.04346,0.06463,2026-04 to 2026-09
+Biomedical Research Institute,Staff,data_entry_rate,178,1057.00000,42.00000,0.03974,0.02953,0.05327,2026-04 to 2026-09
+Biomedical Research Institute,Student worker,data_entry_rate,98,581.00000,34.00000,0.05852,0.04218,0.08066,2026-04 to 2026-09
+Clinical Operations,Faculty,data_entry_rate,230,1366.00000,76.00000,0.05564,0.04468,0.06909,2026-04 to 2026-09
+Clinical Operations,Researcher,data_entry_rate,88,524.00000,34.00000,0.06489,0.04680,0.08930,2026-04 to 2026-09
+Clinical Operations,Staff,data_entry_rate,498,2937.00000,143.00000,0.04869,0.04148,0.05708,2026-04 to 2026-09
+Clinical Operations,Student worker,data_entry_rate,84,497.00000,28.00000,0.05634,0.03926,0.08022,2026-04 to 2026-09
+College of Arts & Sciences,Faculty,data_entry_rate,391,2315.00000,64.00000,0.02765,0.02171,0.03515,2026-04 to 2026-09
+College of Arts & Sciences,Researcher,data_entry_rate,112,662.00000,21.00000,0.03172,0.02084,0.04801,2026-04 to 2026-09
+College of Arts & Sciences,Staff,data_entry_rate,319,1886.00000,50.00000,0.02651,0.02017,0.03478,2026-04 to 2026-09
+College of Arts & Sciences,Student worker,data_entry_rate,278,1639.00000,78.00000,0.04759,0.03830,0.05900,2026-04 to 2026-09
+College of Engineering,Faculty,data_entry_rate,161,956.00000,40.00000,0.04184,0.03088,0.05647,2026-04 to 2026-09
+College of Engineering,Researcher,data_entry_rate,342,2017.00000,101.00000,0.05007,0.04138,0.06048,2026-04 to 2026-09
+College of Engineering,Staff,data_entry_rate,172,1018.00000,30.00000,0.02947,0.02072,0.04176,2026-04 to 2026-09
+College of Engineering,Student worker,data_entry_rate,125,737.00000,45.00000,0.06106,0.04594,0.08073,2026-04 to 2026-09
+Facilities & Operations,Faculty,data_entry_rate,8,,,,,,2026-04 to 2026-09
+Facilities & Operations,Researcher,data_entry_rate,6,,,,,,2026-04 to 2026-09
+Facilities & Operations,Staff,data_entry_rate,391,2311.00000,88.00000,0.03808,0.03101,0.04668,2026-04 to 2026-09
+Facilities & Operations,Student worker,data_entry_rate,145,856.00000,45.00000,0.05257,0.03952,0.06962,2026-04 to 2026-09
+Finance & Administration,Faculty,data_entry_rate,4,,,,,,2026-04 to 2026-09
+Finance & Administration,Researcher,data_entry_rate,3,,,,,,2026-04 to 2026-09
+Finance & Administration,Staff,data_entry_rate,329,1945.00000,42.00000,0.02159,0.01601,0.02906,2026-04 to 2026-09
+Finance & Administration,Student worker,data_entry_rate,114,675.00000,24.00000,0.03556,0.02401,0.05236,2026-04 to 2026-09
+Information Technology Services,Faculty,data_entry_rate,4,,,,,,2026-04 to 2026-09
+Information Technology Services,Researcher,data_entry_rate,1,,,,,,2026-04 to 2026-09
+Information Technology Services,Staff,data_entry_rate,252,1492.00000,9.00000,0.00603,0.00318,0.01142,2026-04 to 2026-09
+Information Technology Services,Student worker,data_entry_rate,93,551.00000,6.00000,0.01089,0.00500,0.02355,2026-04 to 2026-09
+Library & Academic Services,Faculty,data_entry_rate,92,546.00000,19.00000,0.03480,0.02239,0.05371,2026-04 to 2026-09
+Library & Academic Services,Researcher,data_entry_rate,25,149.00000,5.00000,0.03356,0.01442,0.07614,2026-04 to 2026-09
+Library & Academic Services,Staff,data_entry_rate,103,610.00000,14.00000,0.02295,0.01372,0.03815,2026-04 to 2026-09
+Library & Academic Services,Student worker,data_entry_rate,80,473.00000,24.00000,0.05074,0.03433,0.07439,2026-04 to 2026-09
+School of Business,Faculty,data_entry_rate,119,704.00000,18.00000,0.02557,0.01623,0.04005,2026-04 to 2026-09
+School of Business,Researcher,data_entry_rate,55,322.00000,13.00000,0.04037,0.02374,0.06784,2026-04 to 2026-09
+School of Business,Staff,data_entry_rate,127,750.00000,19.00000,0.02533,0.01628,0.03923,2026-04 to 2026-09
+School of Business,Student worker,data_entry_rate,99,586.00000,26.00000,0.04437,0.03046,0.06422,2026-04 to 2026-09
+School of Medicine,Faculty,data_entry_rate,361,2133.00000,93.00000,0.04360,0.03572,0.05312,2026-04 to 2026-09
+School of Medicine,Researcher,data_entry_rate,144,853.00000,31.00000,0.03634,0.02572,0.05112,2026-04 to 2026-09
+School of Medicine,Staff,data_entry_rate,751,4434.00000,158.00000,0.03563,0.03057,0.04150,2026-04 to 2026-09
+School of Medicine,Student worker,data_entry_rate,144,848.00000,46.00000,0.05425,0.04091,0.07160,2026-04 to 2026-09
+School of Nursing,Faculty,data_entry_rate,114,673.00000,25.00000,0.03715,0.02529,0.05426,2026-04 to 2026-09
+School of Nursing,Researcher,data_entry_rate,41,243.00000,15.00000,0.06173,0.03776,0.09934,2026-04 to 2026-09
+School of Nursing,Staff,data_entry_rate,244,1437.00000,59.00000,0.04106,0.03196,0.05260,2026-04 to 2026-09
+School of Nursing,Student worker,data_entry_rate,51,303.00000,23.00000,0.07591,0.05111,0.11132,2026-04 to 2026-09
+Student Affairs,Faculty,data_entry_rate,9,,,,,,2026-04 to 2026-09
+Student Affairs,Researcher,data_entry_rate,2,,,,,,2026-04 to 2026-09
+Student Affairs,Staff,data_entry_rate,381,2258.00000,89.00000,0.03942,0.03214,0.04825,2026-04 to 2026-09
+Student Affairs,Student worker,data_entry_rate,108,640.00000,32.00000,0.05000,0.03564,0.06973,2026-04 to 2026-09

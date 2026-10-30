@@ -1,0 +1,3 @@
+group,users,delivered,clicks,reports,opens,data_entered,mean_difficulty,click_rate,click_rate_low,click_rate_high,report_rate,report_rate_low,report_rate_high,open_rate,open_rate_low,open_rate_high,data_entry_rate,data_entry_rate_low,data_entry_rate_high,median_minutes_to_report,median_low,median_high,suppressed
+Attended an event,2046,8047.00000,921.00000,2552.00000,4456.00000,374.00000,3.57487,0.11445,0.10768,0.12159,0.31714,0.30706,0.32739,0.55375,0.54286,0.56458,0.04648,0.04209,0.05130,69.05000,66.30000,72.90000,0
+Did not attend,5854,23050.00000,3811.00000,4203.00000,13353.00000,1734.00000,3.56816,0.16534,0.16060,0.17019,0.18234,0.17741,0.18738,0.57931,0.57292,0.58567,0.07523,0.07189,0.07870,87.20000,84.40000,90.00000,0

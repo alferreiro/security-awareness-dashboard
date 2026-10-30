@@ -1,0 +1,5 @@
+term,odds_ratio,or_low,or_high,p_value,outcome
+C(difficulty)[T.2],1.60359,1.43420,1.79300,0.00000,clicked
+C(difficulty)[T.3],2.34607,2.10965,2.60899,0.00000,clicked
+C(difficulty)[T.4],3.46251,3.10291,3.86378,0.00000,clicked
+C(difficulty)[T.5],5.05369,4.46880,5.71514,0.00000,clicked

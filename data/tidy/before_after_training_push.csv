@@ -1,0 +1,4 @@
+metric,pre_rate,post_rate,pre_low,pre_high,post_low,post_high,adjusted_odds_ratio,or_low,or_high,p_value,pre_window,post_window
+click_rate,0.13425,0.08693,0.13119,0.13738,0.08441,0.08952,0.55348,0.53077,0.57717,0.00000,2025-09 to 2026-02,2026-04 to 2026-09
+report_rate,0.22864,0.34947,0.22485,0.23248,0.34516,0.35380,1.93816,1.88248,1.99549,0.00000,2025-09 to 2026-02,2026-04 to 2026-09
+median_minutes_to_report,74.30000,50.90000,72.90000,75.80000,50.00000,51.90000,,,,,2025-09 to 2026-02,2026-04 to 2026-09

@@ -1,0 +1,56 @@
+# Methods & data
+
+## Row
+
+{{< include _banner.qmd >}}
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+#| title: "What the data are"
+n_people = len(people)
+n_rows = len(ph)
+display(HTML(f"""
+<div class="finding">
+<p>All data were produced by <code>scripts/generate_data.py</code> with a fixed random seed, so the dashboard rebuilds identically every time. The simulated university has <b>{n_people:,} people</b> in <b>{people['department'].nunique()} departments</b> and four roles (faculty, staff, researcher, student worker).</p>
+<ul>
+<li><b>Phishing simulations:</b> {n_rows:,} rows, one per person per monthly campaign, with the columns of a KnowBe4-style export: delivered, opened, clicked, data entered, reported, minutes to report, and template difficulty (1 to 5).</li>
+<li><b>Training:</b> two modules, an annual Essentials course (Jul 2025) and the Phishing Defense push (Mar 2026), with assignment, due and completion dates.</li>
+<li><b>Newsletter:</b> {len(D['issues'])} monthly issues with opens and clicks per recipient.</li>
+<li><b>Events:</b> six Cybersecurity Awareness Month events (Oct 2025) with registration and attendance.</li>
+</ul>
+<p>The generator deliberately builds in: a drop in clicks and rise in reports after the training push; a short-lived improvement during Awareness Month; more clicks on harder templates; three lagging departments; and a small group of habitual clickers. Every parameter is listed in <code>DATA.md</code> and <code>data/generation_params.json</code>.</p>
+</div>
+"""))
+```
+
+### Column {width=50%}
+
+```{python}
+#| title: "How the numbers are computed"
+display(HTML("""
+<div class="finding">
+<ul>
+<li><b>Rates</b> are counts divided by delivered emails. <b>95% confidence intervals</b> for rates use the Wilson score interval; intervals for medians use binomial order statistics (no distributional assumption).</li>
+<li><b>Difficulty-adjusted rates</b> come from a logistic regression of the outcome on template difficulty, department, role and month (all categorical), with standard errors clustered by person. Group rates are then <b>standardised</b>: every person in the reference period is assigned to the group in turn, predictions are averaged, and the spread of 400 draws from the coefficient distribution gives the interval.</li>
+<li><b>Before/after</b> compares the six months before the March 2026 push with the six months after, in the same regression framework.</li>
+<li><b>Difference-in-differences</b> compares on-time training completers with people who never completed, before and after the push; the completer-by-period interaction is the estimate.</li>
+<li><b>Repeat clickers</b> are people who clicked in at least 3 of the last 6 campaigns, recomputed every month. Only counts are shown.</li>
+<li><b>Privacy floor:</b> any breakdown with fewer than 10 people is blanked (shown as "n&lt;10"). Nothing on this dashboard identifies an individual.</li>
+</ul>
+<p>Full details, including limitations, are in <code>docs/METHODS.md</code> in the repository.</p>
+</div>
+"""))
+```
+
+## Row
+
+```{python}
+#| title: "Campaign catalogue"
+camp = D["campaigns"][["campaign_id", "campaign_name", "send_date", "mean_difficulty", "templates"]].copy()
+camp["send_date"] = camp["send_date"].dt.date
+camp.columns = ["Campaign", "Name", "Send date", "Mean template difficulty", "Templates used"]
+display(table_html(camp, {"Mean template difficulty": "{:.2f}"}))
+```

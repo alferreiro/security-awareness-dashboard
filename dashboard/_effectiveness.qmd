@@ -1,0 +1,218 @@
+# Effectiveness
+
+## Row
+
+{{< include _banner.qmd >}}
+
+## Row
+
+### Column {width=55%}
+
+```{python}
+ba = aa.before_after(ph)
+c, r, t = ba.iloc[0], ba.iloc[1], ba.iloc[2]
+labels = ["Click rate", "Report rate"]
+fig = go.Figure()
+fig.add_trace(go.Bar(x=labels, y=[c["pre_rate"], r["pre_rate"]], name=f"Before push ({c['pre_window']})", marker_color=ap.MUTED,
+                     error_y=dict(type="data", symmetric=False, array=[c["pre_high"] - c["pre_rate"], r["pre_high"] - r["pre_rate"]],
+                                  arrayminus=[c["pre_rate"] - c["pre_low"], r["pre_rate"] - r["pre_low"]], color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                     text=[pct(c["pre_rate"]), pct(r["pre_rate"])], textposition="outside", textfont=dict(size=14),
+                     hovertemplate="%{x}<br>before %{y:.1%}<extra></extra>"))
+fig.add_trace(go.Bar(x=labels, y=[c["post_rate"], r["post_rate"]], name=f"After push ({c['post_window']})",
+                     marker_color=[ap.CLICK, ap.REPORT],
+                     error_y=dict(type="data", symmetric=False, array=[c["post_high"] - c["post_rate"], r["post_high"] - r["post_rate"]],
+                                  arrayminus=[c["post_rate"] - c["post_low"], r["post_rate"] - r["post_low"]], color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                     text=[pct(c["post_rate"]), pct(r["post_rate"])], textposition="outside", textfont=dict(size=14),
+                     hovertemplate="%{x}<br>after %{y:.1%}<extra></extra>"))
+ap.base_layout(fig, f"After the training push, clicks fell {100*(1-c['post_rate']/c['pre_rate']):.0f}% and reports rose {100*(r['post_rate']/r['pre_rate']-1):.0f}%",
+               "Six months before versus six months after the March 2026 Phishing Defense launch (March excluded as the rollout month), 95% CI",
+               ytitle="Share of delivered emails", height=460)
+fig.update_layout(barmode="group", hovermode="x unified", bargap=0.3)
+show(fig)
+```
+
+### Column {width=45%}
+
+```{python}
+#| title: "Before/after, adjusted for template difficulty, department and role"
+txt = f"""
+<div class="finding">
+<p>Because later campaigns used harder templates, the raw before/after comparison <i>understates</i> the improvement. A logistic regression with a before/after indicator plus template difficulty, department and role (standard errors clustered by person) gives:</p>
+<ul>
+<li><b>Clicking:</b> odds ratio <b>{c['adjusted_odds_ratio']:.2f}</b> (95% CI {c['or_low']:.2f} to {c['or_high']:.2f}). The odds of a click after the push are about {100*(1-c['adjusted_odds_ratio']):.0f}% lower than before, for the same template difficulty.</li>
+<li><b>Reporting:</b> odds ratio <b>{r['adjusted_odds_ratio']:.2f}</b> (95% CI {r['or_low']:.2f} to {r['or_high']:.2f}).</li>
+<li><b>Time to first report:</b> median {t['pre_rate']:.0f} minutes before (95% CI {t['pre_low']:.0f} to {t['pre_high']:.0f}) versus <b>{t['post_rate']:.0f} minutes</b> after (95% CI {t['post_low']:.0f} to {t['post_high']:.0f}).</li>
+</ul>
+<p>The "before" window includes the October Awareness Month bump, which makes this a conservative comparison. This is an observational before/after design: it shows the program improved, not that training alone caused every point of the change. The difference-in-differences analysis below isolates the training itself.</p>
+</div>
+"""
+display(HTML(txt))
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+rc = aa.repeat_clickers(ph)
+n0, n1 = int(rc.iloc[0]["repeat_clickers"]), int(rc.iloc[-1]["repeat_clickers"])
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=rc["month_start"], y=rc["repeat_clickers"], mode="lines+markers", name="Repeat clickers",
+                         line=dict(color=ap.CLICK, width=2.5), marker=dict(size=8, color=ap.CLICK, line=dict(color="white", width=2)),
+                         hovertemplate="%{x|%b %Y}<br>%{y} people (%{customdata:.1%} of the university)<extra></extra>", customdata=rc["share"]))
+ap.add_event_markers(fig, events[events["event_type"] == "training_launch"])
+ap.base_layout(fig, f"Repeat clickers fell from {n0} to {n1} people ({100*(1-n1/n0):.0f}% fewer)",
+               "People who clicked 3 or more of the last 6 simulations. Counts only; individuals are never listed on this dashboard.",
+               ytitle="People", y_pct=False, legend=False, height=440)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+coh = aa.repeat_clicker_cohort_rates(ph)
+rep = coh[coh["cohort"].str.startswith("Repeat")]
+oth = coh[coh["cohort"] == "Everyone else"]
+rep_pre = rep[rep["month"].isin(pre_last3)]["click_rate"].mean()
+rep_post = rep[rep["month"].isin(post_last3)]["click_rate"].mean()
+fig = go.Figure()
+ap.add_ci_line(fig, rep["month_start"], rep["click_rate"], rep["click_rate_low"], rep["click_rate_high"],
+               f"Repeat clickers as of Feb 2026 ({int(rep['users'].iloc[0])} people)", ap.CLICK)
+ap.add_ci_line(fig, oth["month_start"], oth["click_rate"], oth["click_rate_low"], oth["click_rate_high"], "Everyone else", ap.GRAY)
+ap.add_event_markers(fig, events[events["event_type"] == "training_launch"])
+ap.base_layout(fig, f"The repeat-clicker cohort's click rate fell from {pct(rep_pre,0)} to {pct(rep_post,0)} after training",
+               "Monthly click rate of the people flagged as repeat clickers in Feb 2026, tracked forward and back. Cohort defined once; no regression-to-the-mean trick.",
+               ytitle="Click rate", height=440)
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+ts = aa.monthly_by_training_status(ph, tr)
+colors = {"Completed by due date": ap.THIRD, "Completed late": ap.FOURTH, "Not completed": ap.CLICK}
+fig = go.Figure()
+for status, color in colors.items():
+    s = ts[ts["status"] == status]
+    ap.add_ci_line(fig, s["month_start"], s["click_rate"], s["click_rate_low"], s["click_rate_high"],
+                   f"{status} ({int(s['users'].iloc[0]):,} people)", color)
+ap.add_event_markers(fig, events[events["event_type"].isin(["training_launch", "training_due"])])
+post_done = ts[(ts["status"] == "Completed by due date") & ts["month"].isin(aa.DID_POST_MONTHS)]["click_rate"].mean()
+post_not = ts[(ts["status"] == "Not completed") & ts["month"].isin(aa.DID_POST_MONTHS)]["click_rate"].mean()
+ap.base_layout(fig, f"Completers and non-completers tracked together until March, then split: {pct(post_done)} versus {pct(post_not)} after",
+               "Click rate by Phishing Defense training status. Parallel pre-trends support the difference-in-differences design.",
+               ytitle="Click rate", height=470)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+did = aa.training_did(ph, tr)
+eff = did["effects"].set_index("metric")
+cells = did["cells"]
+cc = cells[cells["metric"] == "click_rate"]
+fig = go.Figure()
+for period, color in (("Before push", ap.MUTED), ("After push", ap.CLICK)):
+    s = cc[cc["period"] == period].set_index("group").loc[["Not completed", "Completed by due date"]].reset_index()
+    fig.add_trace(go.Bar(x=s["group"], y=s["rate"], name=period, marker_color=color,
+                         error_y=dict(type="data", symmetric=False, array=s["ci_high"] - s["rate"], arrayminus=s["rate"] - s["ci_low"],
+                                      color=ap._rgba(ap.TEXT, 0.45), thickness=1.5, width=4),
+                         text=[pct(v) for v in s["rate"]], textposition="outside", textfont=dict(size=14),
+                         hovertemplate="%{x}<br>" + period + " %{y:.1%}<extra></extra>"))
+e = eff.loc["click_rate"]
+ap.base_layout(fig, f"Training completion predicts lower clicking: difference-in-differences odds ratio {e['did_odds_ratio']:.2f} (95% CI {e['or_low']:.2f} to {e['or_high']:.2f})",
+               f"Click rate before (Sep 2025 to Feb 2026) and after (May to Sep 2026) by training status. {did['excluded_late']:,} late completers excluded.",
+               ytitle="Click rate", height=470)
+fig.update_layout(barmode="group", hovermode="x unified", bargap=0.3)
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+#| title: "Does training completion predict lower click rate?"
+er = eff.loc["report_rate"]
+cr = cells[cells["metric"] == "report_rate"].set_index(["group", "period"])["rate"]
+sc = did["status_counts"].set_index("status")["people"]
+txt = f"""
+<div class="finding">
+<p><b>Yes, and the estimate survives a stricter test than a simple comparison.</b> People who complete training are probably more security-minded to begin with, so comparing completers with non-completers after the push would flatter the training. The difference-in-differences design compares each group with <i>its own</i> pre-push baseline:</p>
+<ul>
+<li><b>Click rate:</b> completers went from {pct(cells.query("metric=='click_rate' and group=='Completed by due date' and period=='Before push'")['rate'].iloc[0])} to {pct(cells.query("metric=='click_rate' and group=='Completed by due date' and period=='After push'")['rate'].iloc[0])}; non-completers from {pct(cells.query("metric=='click_rate' and group=='Not completed' and period=='Before push'")['rate'].iloc[0])} to {pct(cells.query("metric=='click_rate' and group=='Not completed' and period=='After push'")['rate'].iloc[0])}. Adjusted interaction odds ratio <b>{e['did_odds_ratio']:.2f}</b> (95% CI {e['or_low']:.2f} to {e['or_high']:.2f}).</li>
+<li><b>Report rate:</b> completers {pct(cr[('Completed by due date','Before push')])} to {pct(cr[('Completed by due date','After push')])}; non-completers {pct(cr[('Not completed','Before push')])} to {pct(cr[('Not completed','After push')])}. Interaction odds ratio <b>{er['did_odds_ratio']:.2f}</b> (95% CI {er['or_low']:.2f} to {er['or_high']:.2f}).</li>
+</ul>
+<p>Groups: {sc['Completed by due date']:,} completed by the due date, {sc['Not completed']:,} had not completed by the end of the period, and {sc['Completed late']:,} late completers were set aside so the "after" window is clean. Non-completers also improved a little, consistent with newsletters and the general awareness push reaching everyone.</p>
+</div>
+"""
+display(HTML(txt))
+```
+
+### Column {width=50%}
+
+```{python}
+curve = aa.training_completion_curve(tr)
+due = pd.Timestamp(curve["due_date"].iloc[0])
+final = curve["completion_rate"].iloc[-1]
+at_due = curve[curve["date"] <= due]["completion_rate"].iloc[-1]
+fig = go.Figure(go.Scatter(x=curve["date"], y=curve["completion_rate"], mode="lines", line=dict(color=ap.THIRD, width=2.5),
+                           fill="tozeroy", fillcolor=ap._rgba(ap.THIRD, 0.12), name="Completed",
+                           hovertemplate="%{x|%d %b %Y}<br>%{y:.1%} completed<extra></extra>"))
+fig.add_vline(x=due, line=dict(color=ap.GRAY, width=1.5, dash="dot"), annotation_text="Due date",
+              annotation_position="top left", annotation=dict(font=dict(size=12, color=ap.TEXT2)))
+ap.base_layout(fig, f"{pct(at_due,0)} completed Phishing Defense by the due date, {pct(final,0)} by September",
+               "Cumulative completion of the March 2026 module", ytitle="Share of assigned people", legend=False, height=440)
+fig.update_layout(hovermode="x unified")
+fig.update_yaxes(range=[0, 1])
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+tcs = aa.training_completion_summary(tr, people)
+tcs = tcs[tcs["module_id"] == aa.TRAINING_PUSH_MODULE].sort_values("completion_rate")
+lowest = tcs.iloc[0]
+fig = ap.bar_ci(tcs, "department", "completion_rate", "completion_low", "completion_high",
+                f"Training completion is lowest in {lowest['department']} ({pct(lowest['completion_rate'],0)})",
+                "Phishing Defense completion by department (any time up to Sep 2026), 95% CI", color=ap.THIRD,
+                orientation="h", text_fmt=".0%")
+fig.update_layout(height=440, margin=dict(l=10))
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+eva = aa.event_attendee_effect(ph, D["attendance"])
+a_, b_ = eva.set_index("group").loc["Attended an event"], eva.set_index("group").loc["Did not attend"]
+fig = ap.bar_ci(eva, "group", "report_rate", "report_rate_low", "report_rate_high",
+                f"Event attendees reported {pct(a_['report_rate'],0)} of simulations in the following months, versus {pct(b_['report_rate'],0)} for non-attendees",
+                "Report rate Nov 2025 to Feb 2026. Descriptive only: attendees chose to attend, so this mixes the event's effect with who shows up.",
+                color=ap.REPORT)
+fig.update_layout(height=400)
+show(fig)
+```
+
+## Row
+
+```{python}
+#| title: "How to read this page"
+display(HTML("""
+<div class="finding">
+<ul>
+<li><b>Before/after</b> answers "did things improve?" It is the simplest view and the one leadership asks for first.</li>
+<li><b>Repeat clickers</b> are the people most likely to cause an incident. A falling count means the program is reaching the right people, not just raising the average.</li>
+<li><b>Difference-in-differences</b> answers "did <i>training</i> do it?" by removing the part of the improvement that non-completers also experienced.</li>
+<li><b>Event attendance</b> is reported descriptively because attendance was voluntary; a causal claim would need a randomised invitation design.</li>
+<li>All estimates use 95% confidence intervals; standard errors in the regression models are clustered by person because each person is tested 18 times.</li>
+</ul>
+</div>
+"""))
+```

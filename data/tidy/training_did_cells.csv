@@ -1,0 +1,9 @@
+metric,group,period,users,n,k,rate,ci_low,ci_high,suppressed
+click_rate,Not completed,Before push,1668,9844,1553,0.15776,0.15069,0.16510,0
+click_rate,Not completed,After push,1668,8219,1151,0.14004,0.13271,0.14771,0
+click_rate,Completed by due date,Before push,5040,29788,3853,0.12935,0.12558,0.13321,0
+click_rate,Completed by due date,After push,5040,24838,1654,0.06659,0.06356,0.06976,0
+report_rate,Not completed,Before push,1668,9844,1773,0.18011,0.17264,0.18783,0
+report_rate,Not completed,After push,1668,8219,1500,0.18250,0.17430,0.19100,0
+report_rate,Completed by due date,Before push,5040,29788,7099,0.23832,0.23351,0.24319,0
+report_rate,Completed by due date,After push,5040,24838,10354,0.41686,0.41074,0.42301,0

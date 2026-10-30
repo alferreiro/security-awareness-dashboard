@@ -1,0 +1,14 @@
+# Python dependencies for generating the data, computing the statistics and rendering the Quarto dashboard.
+# Versions are the ones the repository was built and tested with; newer minor versions should work.
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+statsmodels>=0.14
+patsy>=0.5.6
+plotly>=5.24,<7
+jupyter>=1.0
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6.29
+pyyaml>=6.0
+tabulate>=0.9

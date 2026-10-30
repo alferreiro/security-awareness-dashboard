@@ -1,0 +1,89 @@
+---
+title: "Security Awareness Program Dashboard — Northfield State University (fictional) — SYNTHETIC DATA"
+format:
+  dashboard:
+    theme: [flatly, custom.scss]
+    orientation: rows
+    scrolling: true
+    expandable: true
+    nav-buttons:
+      - icon: github
+        href: https://github.com/alferreiro/security-awareness-dashboard
+jupyter: python3
+---
+
+```{python}
+#| include: false
+import sys, pathlib, warnings
+warnings.filterwarnings("ignore")
+from IPython import get_ipython
+get_ipython().ast_node_interactivity = "last_expr"  # Quarto defaults to 'all', which would render every chained call
+sys.path.insert(0, str(pathlib.Path("../scripts").resolve()))
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from IPython.display import HTML, Markdown, display
+import awareness_analytics as aa
+import awareness_plots as ap
+
+D = aa.load_data("../data")
+ph, tr, people = D["phishing"], D["training"], D["people"]
+events = D["program_events"]
+monthly = aa.monthly_rates(ph)
+kpis = aa.quarter_kpis(ph, tr)
+pre_m, post_m = aa.PRE_MONTHS, aa.POST_MONTHS
+pre_last3 = pd.period_range("2025-12", "2026-02", freq="M")
+post_last3 = pd.period_range("2026-07", "2026-09", freq="M")
+
+def window_rate(col, months):
+    d = ph[(ph["delivered"] == 1) & ph["month"].isin(months)]
+    return d[col].mean()
+
+click_pre3, click_post3 = window_rate("clicked", pre_last3), window_rate("clicked", post_last3)
+report_pre3, report_post3 = window_rate("reported", pre_last3), window_rate("reported", post_last3)
+pct = aa.pct
+
+import json, uuid
+import plotly.io as pio
+from plotly.offline import get_plotlyjs_version
+
+_PLOTLY_JS_DONE = False
+_PLOTLY_CONFIG = {"responsive": True, "displaylogo": False, "modeBarButtonsToRemove": ["lasso2d", "select2d"]}
+
+
+def show(fig):
+    """
+    Emit one figure as a div plus a script that draws it AFTER the page has loaded.
+    Quarto dashboards keep the page hidden while it initialises; if plotly.js draws
+    during that window it measures legend text as zero-width and caches the value,
+    so horizontal legend entries pile up on top of each other. Deferring the draw to
+    the window 'load' event avoids that.
+    """
+    global _PLOTLY_JS_DONE
+    head = "" if _PLOTLY_JS_DONE else f'<script src="https://cdn.plot.ly/plotly-{get_plotlyjs_version()}.min.js"></script>'
+    _PLOTLY_JS_DONE = True
+    fid = f"fig-{uuid.uuid4().hex[:10]}"
+    spec = pio.to_json(fig, validate=False)
+    html = (f'{head}<div id="{fid}" class="plotly-graph-div" style="height:100%; width:100%;"></div>'
+            f'<script type="text/javascript">(function(){{var spec={spec};var cfg={json.dumps(_PLOTLY_CONFIG)};'
+            f'function draw(){{window.requestAnimationFrame(function(){{Plotly.newPlot("{fid}",spec.data,spec.layout,cfg);}});}}'
+            f'if(document.readyState==="complete"){{draw();}}else{{window.addEventListener("load",draw);}}}})();</script>')
+    display(HTML(html))
+
+
+def table_html(df, fmt=None, index=False):
+    sty = df.style.hide(axis="index") if not index else df.style
+    if fmt:
+        sty = sty.format(fmt, na_rep="n<10")
+    return HTML(sty.set_table_attributes('class="table table-sm table-striped"').to_html())
+```
+
+{{< include _overview.qmd >}}
+
+{{< include _trends.qmd >}}
+
+{{< include _groups.qmd >}}
+
+{{< include _effectiveness.qmd >}}
+
+{{< include _methods.qmd >}}

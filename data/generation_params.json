@@ -1,0 +1,282 @@
+{
+  "seed": 20251029,
+  "university": "Northfield State University (FICTIONAL)",
+  "months": [
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08",
+    "2026-09"
+  ],
+  "delivery_rate": 0.985,
+  "repeat_clicker_share": 0.03,
+  "repeat_clicker_click_bonus": 1.6,
+  "repeat_clicker_report_penalty": -0.3,
+  "click_intercept": -2.0,
+  "click_difficulty_slope": 0.45,
+  "click_awareness_slope": -0.55,
+  "click_secular_trend_per_month": -0.03,
+  "report_intercept": -1.75,
+  "report_difficulty_slope": -0.15,
+  "report_awareness_slope": 0.7,
+  "report_secular_trend_per_month": 0.02,
+  "report_after_click_penalty": -0.6,
+  "open_intercept": -0.15,
+  "open_difficulty_slope": 0.3,
+  "data_entry_intercept": -0.6,
+  "data_entry_difficulty_slope": 0.3,
+  "data_entry_awareness_slope": -0.3,
+  "ttr_median_minutes": 90.0,
+  "ttr_log_sd": 0.85,
+  "ttr_awareness_slope": -0.2,
+  "ttr_difficulty_slope": 0.1,
+  "ttr_bounds_minutes": [
+    1,
+    2880
+  ],
+  "targeted_template_probability": {
+    "clinical": 0.7,
+    "research": 0.7,
+    "academic": 0.2,
+    "admin": 0.0
+  },
+  "early_phase_months": 6,
+  "early_phase_max_difficulty": 3,
+  "newsletter_open_intercept": -0.65,
+  "newsletter_open_awareness_slope": 0.45,
+  "newsletter_special_issue_bonus": 0.35,
+  "newsletter_click_given_open_intercept": -1.3,
+  "newsletter_click_awareness_slope": 0.3,
+  "event_registration_intercept": -3.1,
+  "event_registration_awareness_slope": 0.5,
+  "event_virtual_bonus": 0.3,
+  "event_targeted_audience_bonus": 0.6,
+  "event_it_department_bonus": 1.0,
+  "event_attendance_given_registration": 0.72,
+  "csam_month": "2025-10",
+  "csam_effect": {
+    "0": [
+      -0.35,
+      0.6,
+      -0.2
+    ],
+    "1": [
+      -0.2,
+      0.35,
+      -0.1
+    ],
+    "2": [
+      -0.1,
+      0.15,
+      0.0
+    ]
+  },
+  "event_effect": {
+    "click": -0.15,
+    "report": 0.35,
+    "ttr": -0.15
+  },
+  "training_modules": [
+    {
+      "module_id": "TRN-2025-ESSENTIALS",
+      "module_name": "Security Awareness Essentials (annual)",
+      "assigned_date": "2025-07-01",
+      "due_date": "2025-08-31",
+      "base_logit": 0.55,
+      "awareness_weight": 0.3,
+      "late_tail_days": 75,
+      "click_effect": -0.15,
+      "report_effect": 0.2,
+      "ttr_effect": -0.1
+    },
+    {
+      "module_id": "TRN-2026-PHISHDEF",
+      "module_name": "Phishing Defense: Recognize & Report",
+      "assigned_date": "2026-03-02",
+      "due_date": "2026-04-30",
+      "base_logit": 1.6,
+      "awareness_weight": 0.4,
+      "late_tail_days": 150,
+      "click_effect": -0.75,
+      "report_effect": 1.0,
+      "ttr_effect": -0.6
+    }
+  ],
+  "training_push_date": "2026-03-02",
+  "spillover_after_push": {
+    "click": -0.1,
+    "report": 0.15
+  },
+  "repeat_clicker_training_discount": 0.2,
+  "departments": [
+    {
+      "name": "School of Medicine",
+      "headcount": 1400,
+      "type": "clinical",
+      "click_offset": 0.15,
+      "report_offset": -0.1,
+      "training_offset": -0.5
+    },
+    {
+      "name": "Clinical Operations",
+      "headcount": 900,
+      "type": "clinical",
+      "click_offset": 0.45,
+      "report_offset": -0.35,
+      "training_offset": -0.6
+    },
+    {
+      "name": "School of Nursing",
+      "headcount": 450,
+      "type": "clinical",
+      "click_offset": 0.05,
+      "report_offset": 0.1,
+      "training_offset": 0.1
+    },
+    {
+      "name": "Biomedical Research Institute",
+      "headcount": 700,
+      "type": "research",
+      "click_offset": 0.2,
+      "report_offset": -0.05,
+      "training_offset": -0.2
+    },
+    {
+      "name": "College of Engineering",
+      "headcount": 800,
+      "type": "research",
+      "click_offset": 0.0,
+      "report_offset": 0.05,
+      "training_offset": 0.0
+    },
+    {
+      "name": "College of Arts & Sciences",
+      "headcount": 1100,
+      "type": "academic",
+      "click_offset": 0.05,
+      "report_offset": 0.0,
+      "training_offset": 0.0
+    },
+    {
+      "name": "School of Business",
+      "headcount": 400,
+      "type": "academic",
+      "click_offset": -0.05,
+      "report_offset": 0.05,
+      "training_offset": 0.2
+    },
+    {
+      "name": "Information Technology Services",
+      "headcount": 350,
+      "type": "admin",
+      "click_offset": -0.8,
+      "report_offset": 0.9,
+      "training_offset": 0.9
+    },
+    {
+      "name": "Finance & Administration",
+      "headcount": 450,
+      "type": "admin",
+      "click_offset": -0.2,
+      "report_offset": 0.25,
+      "training_offset": 0.4
+    },
+    {
+      "name": "Student Affairs",
+      "headcount": 500,
+      "type": "admin",
+      "click_offset": 0.4,
+      "report_offset": -0.3,
+      "training_offset": -0.3
+    },
+    {
+      "name": "Facilities & Operations",
+      "headcount": 550,
+      "type": "admin",
+      "click_offset": 0.55,
+      "report_offset": -0.45,
+      "training_offset": -0.8
+    },
+    {
+      "name": "Library & Academic Services",
+      "headcount": 300,
+      "type": "academic",
+      "click_offset": -0.15,
+      "report_offset": 0.2,
+      "training_offset": 0.3
+    }
+  ],
+  "role_mix": {
+    "clinical": {
+      "faculty": 0.25,
+      "staff": 0.55,
+      "researcher": 0.1,
+      "student_worker": 0.1
+    },
+    "research": {
+      "faculty": 0.2,
+      "staff": 0.25,
+      "researcher": 0.4,
+      "student_worker": 0.15
+    },
+    "academic": {
+      "faculty": 0.35,
+      "staff": 0.3,
+      "researcher": 0.1,
+      "student_worker": 0.25
+    },
+    "admin": {
+      "faculty": 0.01,
+      "staff": 0.73,
+      "researcher": 0.01,
+      "student_worker": 0.25
+    }
+  },
+  "role_effects": {
+    "faculty": {
+      "click": 0.0,
+      "report": -0.25,
+      "train": -0.6,
+      "ttr": 0.25,
+      "news": -0.2,
+      "event": 0.0
+    },
+    "staff": {
+      "click": -0.05,
+      "report": 0.1,
+      "train": 0.3,
+      "ttr": 0.0,
+      "news": 0.1,
+      "event": 0.3
+    },
+    "researcher": {
+      "click": 0.1,
+      "report": 0.0,
+      "train": -0.2,
+      "ttr": 0.1,
+      "news": 0.0,
+      "event": 0.1
+    },
+    "student_worker": {
+      "click": 0.35,
+      "report": -0.2,
+      "train": 0.0,
+      "ttr": 0.1,
+      "news": -0.4,
+      "event": -0.3
+    }
+  }
+}

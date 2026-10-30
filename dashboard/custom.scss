@@ -1,0 +1,36 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+$navbar-bg: #0d366b;
+$navbar-fg: #ffffff;
+$primary: #2a78d6;
+$body-color: #0b0b0b;
+$card-border-color: #e5e4df;
+
+/*-- scss:rules --*/
+.synthetic-banner {
+  background: #fff4d6;
+  border-left: 6px solid #eda100;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  color: #0b0b0b;
+  margin: 0;
+}
+.kpi-row { display: flex !important; flex-direction: row !important; gap: 1rem; flex-wrap: wrap; padding: 0.4rem 0.2rem; height: auto !important; min-height: 0 !important; flex: 0 0 auto !important; }
+.kpi { display: block !important; flex: 1 1 200px !important; height: auto !important; min-height: 0 !important; background: #fcfcfb; border: 1px solid #e5e4df; border-radius: 10px; padding: 1rem 1.2rem; }
+.kpi-label { font-size: 1.05rem; color: #52514e; margin-bottom: 0.2rem; }
+.kpi-value { font-size: 2.6rem; font-weight: 600; line-height: 1.1; color: #0b0b0b; }
+.kpi-delta { font-size: 1rem; margin-top: 0.4rem; }
+.kpi-delta.good { color: #006300; }
+.kpi-delta.bad  { color: #b02a2a; }
+.kpi-delta.flat { color: #52514e; }
+.kpi-word { color: #52514e; }
+.kpi-period { font-size: 0.9rem; color: #8a8984; margin-top: 0.2rem; }
+.finding { font-size: 1.05rem; line-height: 1.5; }
+.finding li { margin-bottom: 0.5rem; }
+.table { font-size: 0.95rem; }
+.card-body h4 { font-size: 1.1rem; }
+
+/* Scrolling layout: size every row by its content instead of equal 1fr shares,
+   so a short KPI row does not stretch to the height of the tallest chart row. */
+.quarto-dashboard .page-layout-custom .bslib-grid { grid-template-rows: none !important; grid-auto-rows: auto !important; }
+.quarto-dashboard .card.html-fill-container { min-height: 0 !important; }

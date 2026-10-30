@@ -1,0 +1,7 @@
+event_id,event_name,event_date,format,registered,attended,show_rate
+EVT-01,Cybersecurity Awareness Month kickoff & Phish Bowl,2025-10-01,in-person,455,327,0.71868
+EVT-02,Lunch & Learn: Spot the Phish (live demo),2025-10-07,virtual,587,421,0.71721
+EVT-03,Password manager & MFA clinic,2025-10-14,in-person,458,347,0.75764
+EVT-04,Protecting research data: faculty panel,2025-10-16,virtual,671,487,0.72578
+EVT-05,Clinical phishing tabletop exercise,2025-10-22,in-person,555,388,0.69910
+EVT-06,Report-a-Phish challenge awards,2025-10-29,virtual,583,423,0.72556

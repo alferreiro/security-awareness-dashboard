@@ -1,0 +1,102 @@
+# Trends
+
+## Row
+
+{{< include _banner.qmd >}}
+
+## Row
+
+```{python}
+title = (f"{aa.describe_change(report_post3, report_pre3, True, 'Report rate')} and "
+         f"{aa.describe_change(click_post3, click_pre3, False, 'click rate').lower()}: last 3 months versus the 3 months before the push")
+fig = go.Figure()
+ap.add_ci_line(fig, monthly["month_start"], monthly["click_rate"], monthly["click_rate_low"], monthly["click_rate_high"],
+               "Click rate", ap.CLICK)
+ap.add_ci_line(fig, monthly["month_start"], monthly["report_rate"], monthly["report_rate_low"], monthly["report_rate_high"],
+               "Report rate", ap.REPORT)
+ap.add_ci_line(fig, monthly["month_start"], monthly["data_entry_rate"], monthly["data_entry_rate_low"],
+               monthly["data_entry_rate_high"], "Entered data (credentials)", ap.FOURTH, dash="dot")
+ap.add_event_markers(fig, events)
+ap.base_layout(fig, title,
+               "Monthly share of delivered simulation emails with 95% Wilson confidence bands. Vertical lines mark program events.",
+               ytitle="Share of delivered emails", height=560, wrap=100)
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+nl = aa.newsletter_rates(D["newsletter"])
+sp = nl[nl["special_issue"] == 1]
+reg = nl[nl["special_issue"] == 0]
+fig = go.Figure()
+ap.add_ci_line(fig, nl["month_start"], nl["open_rate"], nl["open_low"], nl["open_high"], "Open rate", ap.CLICK)
+ap.add_ci_line(fig, nl["month_start"], nl["click_rate"], nl["click_low"], nl["click_high"], "Click-through rate", ap.THIRD)
+fig.add_trace(go.Scatter(x=sp["month_start"], y=sp["open_rate"], mode="markers", name="Special issue",
+                         marker=dict(size=16, color=ap.FOURTH, symbol="star", line=dict(color="white", width=2)),
+                         hovertemplate="%{text}<extra>Special issue</extra>", text=sp["issue_title"]))
+ap.base_layout(fig, f"Newsletter opens jump to {pct(sp['open_rate'].mean(),0)} for special issues, versus {pct(reg['open_rate'].mean(),0)} normally",
+               "Monthly security newsletter, share of recipients, 95% confidence bands",
+               ytitle="Share of recipients", height=440)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+camp = D["campaigns"].copy()
+camp["month_start"] = pd.PeriodIndex(camp["month"], freq="M").to_timestamp()
+diff_month = ph[ph["delivered"] == 1].groupby("month")["template_difficulty"].mean().reset_index()
+diff_month["month_start"] = diff_month["month"].dt.to_timestamp()
+d0, d1 = diff_month["template_difficulty"].head(6).mean(), diff_month["template_difficulty"].tail(6).mean()
+fig = go.Figure(go.Bar(x=diff_month["month_start"], y=diff_month["template_difficulty"], marker_color=ap.GRAY,
+                       hovertemplate="%{x|%b %Y}<br>mean difficulty %{y:.2f}<extra></extra>"))
+ap.base_layout(fig, f"Templates got harder: mean difficulty rose from {d0:.1f} to {d1:.1f} (scale 1-5)",
+               "Raw click rates understate progress because later simulations were more convincing",
+               ytitle="Mean template difficulty", y_pct=False, legend=False, height=440)
+fig.update_layout(hovermode="closest", bargap=0.35)
+fig.update_yaxes(range=[0, 5])
+show(fig)
+```
+
+## Row
+
+### Column {width=50%}
+
+```{python}
+csam = monthly[monthly["month"] == pd.Period("2025-10", freq="M")].iloc[0]
+sept = monthly[monthly["month"] == pd.Period("2025-09", freq="M")].iloc[0]
+nov = monthly[monthly["month"] == pd.Period("2025-11", freq="M")].iloc[0]
+window = monthly[(monthly["month"] >= pd.Period("2025-08", freq="M")) & (monthly["month"] <= pd.Period("2026-01", freq="M"))]
+fig = go.Figure()
+ap.add_ci_line(fig, window["month_start"], window["click_rate"], window["click_rate_low"], window["click_rate_high"],
+               "Click rate", ap.CLICK)
+ap.add_ci_line(fig, window["month_start"], window["report_rate"], window["report_rate_low"], window["report_rate_high"],
+               "Report rate", ap.REPORT)
+ap.add_shaded_period(fig, "2025-10-01", "2025-10-31", "Cybersecurity Awareness Month")
+ap.base_layout(fig, f"Awareness Month: reports rose to {pct(csam['report_rate'],0)} in October, then faded to {pct(nov['report_rate'],0)} by November",
+               "The six October events produced a real but short-lived bump; the March training produced a lasting one",
+               ytitle="Share of delivered emails", height=420)
+show(fig)
+```
+
+### Column {width=50%}
+
+```{python}
+ev = aa.event_summary(D["attendance"], D["events"])
+ev["label"] = ev["event_name"].str.replace(" & ", " &amp; ")
+fig = go.Figure()
+fig.add_trace(go.Bar(y=ev["event_name"], x=ev["registered"], orientation="h", name="Registered",
+                     marker_color=ap.MUTED, hovertemplate="%{y}<br>%{x} registered<extra></extra>"))
+fig.add_trace(go.Bar(y=ev["event_name"], x=ev["attended"], orientation="h", name="Attended",
+                     marker_color=ap.FOURTH, hovertemplate="%{y}<br>%{x} attended<extra></extra>"))
+n_att = D["attendance"].loc[D["attendance"]["attended"] == 1, "user_id"].nunique()
+ap.base_layout(fig, f"{n_att:,} people ({pct(n_att/len(people),0)} of the university) attended at least one October event",
+               "Cybersecurity Awareness Month 2025 events, registrations and attendance",
+               xtitle="People", y_pct=False, height=420)
+fig.update_layout(barmode="overlay", hovermode="closest", bargap=0.3)
+fig.update_yaxes(automargin=True, rangemode="normal", autorange="reversed")
+show(fig)
+```
